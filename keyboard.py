@@ -58,7 +58,7 @@ device = uinput.Device(KEY_MAPPING.values())
 try:
   sensor = MPR121.begin()
 except Exception as e:
-  print e
+  print (e)
   sys.exit(1)
 
 num_electrodes = 12
@@ -84,9 +84,9 @@ while True:
     sensor.update_touch_data()
     for i in range(num_electrodes):
       if sensor.is_new_touch(i):
-        print "electrode {0} was just touched".format(i)
+        print ("electrode {0} was just touched".format(i))
         device.emit_click(KEY_MAPPING[i])
       elif sensor.is_new_release(i):
-        print "electrode {0} was just released".format(i)
+        print ("electrode {0} was just released".format(i))
 
   sleep(0.01)
